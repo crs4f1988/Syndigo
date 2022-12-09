@@ -47,4 +47,15 @@ select pubstatus
 from pfg;
 select gtin
 from pfg
-WHERE pubstatus = ValidationFailed;
+WHERE pubstatus LIKE 'ValidationFailed';
+select *
+from pfg;
+select COUNT(DISTINCT gtin)
+from pfg
+WHERE pubstatus LIKE 'ValidationFailed';
+select p.gtin, p.brand_name, p.info_provider_gln
+from pfg AS p
+LEFT JOIN renzi as r
+ON p.gtin;
+SELECT	* FROM pfg
+INNER JOIN renzi USING (gtin);
