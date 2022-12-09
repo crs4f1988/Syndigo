@@ -1,3 +1,50 @@
 select *
 from gcfoods;
-select 
+select *
+from pfg;
+select COUNT(gtin)
+from gcfoods;
+select COUNT(GTIN)
+from pfg;
+select COUNT(*)
+from pfg;
+select COUNT(DISTINCT(pfg.Brand_Name))
+from pfg;
+select COUNT(Brand_Name)
+from pfg;
+select Brand_Name
+from pfg;
+select * 
+from pfg;
+select publicationid
+from renzi;
+select renzi.PublicationID
+from renzi;
+select PublicationID
+from syndigo.renzi;
+select publicationid
+from gcfoods;
+select party_name
+from gcfoods;
+select COUNT(DISTINCT(brand_name))
+from gcfoods;
+select DISTINCT brand_name
+from gcfoods;
+select DISTINCT(COUNT(brand_name))
+from gcfoods;
+select DISTINCT(COUNT(brand_name))
+from renzi;
+select DISTINCT(COUNT(brand_name))
+from pfg;
+select DISTINCT(COUNT(brand_name), gtin, info_provider_gln)
+from pfg
+group by gtin, info_provider_gln;
+select COUNT(*)
+from pfg;
+select COUNT(info_provider_gln)
+from pfg;
+select pubstatus
+from pfg;
+select gtin
+from pfg
+WHERE pubstatus = ValidationFailed;
