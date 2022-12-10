@@ -132,4 +132,59 @@ INNER JOIN gcfoods USING (gtin)
  ORDER BY COUNT(p.action_details) desc 
  LIMIT 50;
  
- 
+SELECT COUNT(p.brand_name)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin);
+
+SELECT p.action_details
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.brand_name LIKE '%Kraft%';
+
+SELECT COUNT(p.action_details)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.brand_name LIKE '%Kraft%';
+
+SELECT p.pubstatus
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+GROUP BY p.pubstatus
+ORDER BY count(*) DESC;
+
+SELECT p.brand_name, p.pubstatus, COUNT(p.gtin)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+GROUP BY p.brand_name, p.pubstatus
+ORDER BY p.brand_name;
+
+SELECT p.brand_name, p.pubstatus, COUNT(p.gtin)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+GROUP BY p.brand_name, p.pubstatus
+ORDER BY COUNT(p.gtin) desc
+LIMIT 10;
+
+SELECT p.brand_name, p.pubstatus, COUNT(p.gtin)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.pubstatus = 'ValidationFailed'
+GROUP BY p.brand_name, p.pubstatus
+ORDER BY COUNT(p.gtin) desc;
+
+SELECT p.brand_name, p.pubstatus, COUNT(p.gtin)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.pubstatus = 'ValidationFailed'
+AND p.brand_name ilike '%Coca%'
+GROUP BY p.brand_name, p.pubstatus
+ORDER BY COUNT(p.gtin) desc
+LIMIT 10;
