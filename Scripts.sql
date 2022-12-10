@@ -99,4 +99,37 @@ SELECT DISTINCT(p.brand_name)
 FROM pfg AS p
 INNER JOIN renzi USING (gtin);
 
-SELECT COUNT()
+SELECT COUNT(p.pubstatus)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.pubstatus = 'ValidationFailed';
+
+SELECT p.action_details
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.pubstatus = 'ValidationFailed';
+
+SELECT COUNT(p.action_details)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.pubstatus = 'ValidationFailed';
+
+SELECT p.action_details
+FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+WHERE p.action_details LIKE '%Allergen%';
+
+SELECT p.action_details 
+ FROM pfg AS p
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin) 
+ WHERE p.action_details LIKE '%Nutrition%'
+ GROUP BY p.action_details
+ ORDER BY COUNT(p.action_details) desc 
+ LIMIT 50;
+ 
+ 
