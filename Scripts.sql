@@ -59,3 +59,44 @@ LEFT JOIN renzi as r
 ON p.gtin;
 SELECT	* FROM pfg
 INNER JOIN renzi USING (gtin);
+SELECT	* FROM pfg
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin);
+SELECT COUNT(DISTINCT gtin)
+FROM  pfg
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin)
+
+
+
+WITH CTE AS (SELECT	* FROM pfg
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin))
+SELECT COUNT(DISTINCT brand_name)
+FROM CTE;
+
+WITH CTE AS (SELECT	* FROM pfg
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin))
+SELECT *
+FROM CTE;
+
+WITH CTE AS (SELECT	* FROM pfg
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin))
+SELECT *
+FROM CTE;
+
+SELECT	* FROM pfg
+INNER JOIN renzi USING (gtin)
+INNER JOIN gcfoods USING (gtin);
+
+SELECT p.brand_name
+FROM pfg AS p
+INNER JOIN renzi USING (gtin);
+
+SELECT DISTINCT(p.brand_name)
+FROM pfg AS p
+INNER JOIN renzi USING (gtin);
+
+SELECT COUNT()
